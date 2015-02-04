@@ -1,9 +1,16 @@
 package com.example.venkateswaris.expensetracker;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+
+import java.util.ArrayList;
+
+import static com.example.venkateswaris.expensetracker.TableLayoutHelper.createTableRowFor;
 
 
 public class AllExpense extends ActionBarActivity {
@@ -12,8 +19,16 @@ public class AllExpense extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_expense);
+        ExpenseDAO expenseDAO = new ExpenseDAO(this, 1, "expense.db");
+        TableLayout expenseTableView = (TableLayout) findViewById(R.id.expenseTable);
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("Venki");
+        strings.add("SecondColumn");
+        TableRow child1 = createTableRowFor(strings,this);
+        expenseTableView.addView(child1);
+        View child2 = createTableRowFor(strings,this);
+        expenseTableView.addView(child2);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
